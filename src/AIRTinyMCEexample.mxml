@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:components="net.tw.air.components.*"
+					   showStatusBar="false">
+
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+
+	<fx:Script><![CDATA[
+		public function traceHTML():void {
+			trace(rte.htmlText);
+		}
+
+		public function setHTML():void {
+			rte.htmlText='abc <b>def</b> ghi';
+		}
+
+		public function setRTL():void {
+			rte.rtl=rtlBox.selected;
+		}
+
+		protected function setSourceMode():void {
+			rte.isSourceMode=sourceBox.selected;
+		}
+
+		protected function setEditable():void {
+			rte.editable=editableBox.selected;
+		}
+		]]></fx:Script>
+
+	<components:AIRTinyMCE id="rte" width="100%" height="100%" htmlText="Test HTML!" />
+
+	<s:HGroup>
+		<s:Button label="trace HTML" click="traceHTML()"/>
+		<s:Button label="set HTML" click="setHTML()"/>
+		<s:CheckBox id="rtlBox" label="RTL" change="setRTL()"/>
+		<s:CheckBox id="sourceBox" label="Source" change="setSourceMode()"/>
+		<s:CheckBox id="editableBox" label="Editable" change="setEditable()" selected="true"/>
+	</s:HGroup>
+
+</s:WindowedApplication>
