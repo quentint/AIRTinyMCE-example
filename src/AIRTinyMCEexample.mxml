@@ -29,9 +29,14 @@
 		protected function setEditable():void {
 			rte.editable=editableBox.selected;
 		}
+
+		protected function onChange():void {
+			trace(rte.htmlText);
+		}
+
 		]]></fx:Script>
 
-	<components:AIRTinyMCE id="rte" width="100%" height="100%" htmlText="Test HTML!" />
+	<components:AIRTinyMCE id="rte" width="100%" height="100%" htmlText="Test HTML!" change="onChange()" />
 
 	<s:HGroup>
 		<s:Button label="trace HTML" click="traceHTML()"/>
