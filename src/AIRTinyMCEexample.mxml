@@ -10,40 +10,32 @@
 	</s:layout>
 
 	<fx:Script><![CDATA[
-		public function traceHTML():void {
-			trace(rte.htmlText);
-		}
-
-		public function setHTML():void {
-			rte.htmlText='abc <b>def</b> ghi';
-		}
-
-		public function setRTL():void {
-			rte.rtl=rtlBox.selected;
-		}
-
-		protected function setSourceMode():void {
-			rte.isSourceMode=sourceBox.selected;
-		}
-
-		protected function setEditable():void {
-			rte.editable=editableBox.selected;
-		}
 
 		protected function onChange():void {
-			trace(rte.htmlText);
+			ta.text=rte.htmlText;
 		}
 
 		]]></fx:Script>
 
-	<components:AIRTinyMCE id="rte" width="100%" height="100%" htmlText="Test HTML!" change="onChange()" />
+	<components:AIRTinyMCE id="rte"
+						   width="100%" height="100%"
+						   change="onChange()"
+						   rtl="{rtlBox.selected}"
+						   editable="{editableBox.selected}"
+						   isSourceMode="{sourceBox.selected}">
+
+		<components:htmlText><![CDATA[abc <b>def</b> ghi]]></components:htmlText>
+
+						   </components:AIRTinyMCE>
+
+	<s:TextArea id="ta" width="100%" height="100%" editable="false">
+
+	</s:TextArea>
 
 	<s:HGroup>
-		<s:Button label="trace HTML" click="traceHTML()"/>
-		<s:Button label="set HTML" click="setHTML()"/>
-		<s:CheckBox id="rtlBox" label="RTL" change="setRTL()"/>
-		<s:CheckBox id="sourceBox" label="Source" change="setSourceMode()"/>
-		<s:CheckBox id="editableBox" label="Editable" change="setEditable()" selected="true"/>
+		<s:CheckBox id="rtlBox" label="RTL" />
+		<s:CheckBox id="sourceBox" label="Source" />
+		<s:CheckBox id="editableBox" label="Editable" selected="true"/>
 	</s:HGroup>
 
 </s:WindowedApplication>
